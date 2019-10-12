@@ -2,11 +2,11 @@
 
 ## Take Traffic Accounting Snapshot
 
-`ssh alex@172.17.255.1 "/ip accounting snapshot take"`
+`ssh alex@<host> "/ip accounting snapshot take"`
 
 ## Show Traffic Accounting
 
-`ssh alex@172.17.255.1 "/ip accounting snapshot print"`
+`ssh alex@<host> "/ip accounting snapshot print"`
 
 ## Pipes
 
@@ -24,7 +24,7 @@
 
 ### Only local
 
-`| grep 172.17.255`
+`| grep <xxx.yyy.zzz>` (where xxx.yyy.zzz is the ip address "prefix")
 
 ### Group + Sum by Client
 
@@ -40,7 +40,7 @@ for (key in arr) printf("%s\t%s\n", key, arr[key])
 ## Full collection
 
 ```bash
-ssh alex@172.17.255.1 "/ip accounting snapshot take; /ip accounting snapshot print" | awk '{print $2 "\t" $5}' | grep 172.17.255 | awk '{                               
+ssh alex@<host> "/ip accounting snapshot take; /ip accounting snapshot print" | awk '{print $2 "\t" $5}' | grep 172.17.255 | awk '{                               
   arr[$1]+=$2
 }
 END {
